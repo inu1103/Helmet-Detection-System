@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href={{url_for('static' , filename = 'css/normalize.css')}}>
+        <link rel="stylesheet" href={{url_for('static' , filename = 'css/grid.css')}}>
+        <link rel='stylesheet' href={{url_for('static' , filename = 'css/styleSucc.css')}}>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Results Page</title>
+
+        <style type="text/css">
+            th{
+                text-align: center;
+                font-size: 20px;
+            }
+
+            td{
+                text-align: center;
+                font-size: 18px;
+            }
+            
+        </style>
+        <style>
+			.content {
+			  max-width: 500px;
+			  margin: auto;
+			  }
+			.bg-img{
+				width: 100%;
+				height: 100vh;
+				background-image:linear-gradient(rgba(0, 0, 0, 0.71),rgba(0, 0, 0, 0.7)),url('static/css/rto_office_img.jpeg');
+				background-size: cover;
+				background-position: center;
+			}
+			
+		</style>
+        
+    </head>
+
+    <body>
+      <div class="bg-img">
+        <div class = "second-main" style = "height: 100%; width : 100%">
+            <nav>
+                <ul style = "padding-right: 2%;" class = "main-nav">
+                    <li><a href ="/">HomePage</a></li>                
+                </ul>
+               
+            </nav>
+            <div class = "header">
+                <row style = "width: 100% ; display: flex; justify-content: center;">
+                    <h3 class="header-text">Uploaded Image</h3>
+                </row>
+                <row style = "width: 100% ; display: flex; justify-content: center;">
+                    <img class = "result-img" src="{{path}}">
+                </row>
+            </div>
+            <row style = "width: 100% ; display: flex; justify-content: center; padding-left: 5%;padding-right: 5%;padding-top: 5%;padding-bottom: 5%;">
+                <form style="padding-left: 5%;padding-right: 5%;margin-right: 5%;" action="/fetch_detected/{{img_number}}">
+                    <input class="submit" type="hidden" , name = ""/>
+                    <button class="btn btn-success btn-lg" >Detected Image</button> 
+                </form>
+                <form style="padding-left: 5%;padding-right: 5%;" action="/fetch_defaulted/{{img_number}}">
+                    <input class="submit" type="hidden" , name = ""/>
+                    <button class="btn btn-success btn-lg" >Defaulters Detected</button> 
+                </form>
+                <form style="padding-left: 5%;padding-right: 5%;margin-left: 5%;" action="/fetch_number_plates/{{img_number}}">
+                    <input class="submit" type="hidden" , name = ""/>
+                    <button class="btn btn-success btn-lg" >Number plates detected</button> 
+                </form>
+            </row>
+            <div class = "info">
+            
+                <row style = "width: 100% ; display: flex; justify-content: center;">
+                    <h3 class = "header-text">Number Detected</h3>
+                </row>
+                    <ol style = "width: 100% ; display: flex; justify-content: center;">
+                        {%for i in range(0,size)%}
+                            <li style="color:blueviolet;justify-content: center;"><b>{{number[i]}}</b></li>
+                        {%endfor%}
+                    </ol>
+            </div>
+        </div>
+    </div>
+    </body>
+    
+</html>
